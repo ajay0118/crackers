@@ -1,0 +1,58 @@
+You are an expert full-stack developer and project generator. Create a complete, ready-to-run demo e-commerce project named `atm-crackers-demo` using Next.js + TypeScript + Tailwind CSS that matches the specification below.
+
+1) Desired outcome:
+- Produce a project folder `atm-crackers-demo/` containing all source files and a working README.
+- If your environment supports file export, return a downloadable ZIP named `atm-crackers-demo.zip`.
+- If ZIP export is not supported, output every file as separate code blocks labeled with the exact file path (e.g. `// FILE: atm-crackers-demo/package.json`) so I can copy them into a repo/IDE and export.
+
+2) Project requirements (summarized):
+- Next.js (app or pages ok) + TypeScript + Tailwind CSS.
+- Pages: Home, Products (list + product detail), Cart, Checkout, Order Confirmation (with Invoice component), About, Contact.
+- Components: Header, Footer, ProductCard, ProductList, SearchBar, LoadMoreButton, Invoice.
+- Data: `/data/products.json` seed file (include 40 sample products across categories).
+- Pricing: show original price (struck-through) and 90% discounted price; coupon `DEMO50` applies additional 50% on discounted total.
+- Cart state via Context (persisted to localStorage).
+- Invoice download implemented without `window.print()` (either server PDF route or client HTML->Blob).
+- All UI with Tailwind CSS only. Keep code simple and well-commented for beginners.
+- Provide `types` for Product/CartItem/Order, helper `lib/pricing.ts` with `calculateTotals()`.
+- README with how to run, where to change products and coupon.
+
+3) Developer-friendly constraints:
+- Keep components small and readable.
+- Use `pages` or `app` router consistently; list which you pick.
+- Include sample images as placeholders (via `https://via.placeholder.com/...`).
+- Include scripts in package.json: `dev`, `build`, `start`.
+
+4) Output instructions for the AI:
+- First, state whether you can produce a downloadable zip. If yes, provide the zip link.
+- If no zip possible, output every file content sequentially in this exact format:
+
+// FILE: atm-crackers-demo/package.json
+\`\`\`json
+{ ... }
+\`\`\`
+
+// FILE: atm-crackers-demo/next.config.js
+\`\`\`js
+...
+\`\`\`
+
+...and so on for all files.
+
+5) Minimal required files to generate (but not limited to):
+- package.json, tsconfig.json, tailwind.config.js, postcss.config.js
+- pages/_app.tsx or app/layout.tsx
+- pages/index.tsx or app/page.tsx
+- pages/products/index.tsx and pages/products/[id].tsx (or app equivalents)
+- pages/cart.tsx, pages/checkout.tsx, pages/order-confirmation.tsx
+- components/* .tsx as listed above
+- lib/cartContext.tsx, lib/pricing.ts, lib/products.ts
+- data/products.json (40 items)
+- public/images placeholders
+- README.md
+
+6) Keep file contents concise but functional (no unnecessary advanced patterns). Add inline comments to explain where to change product JSON, coupons, or invoice details.
+
+Return: Either a ZIP or the complete file-by-file output as described.
+
+Begin now and generate the project.
