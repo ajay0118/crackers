@@ -1,7 +1,5 @@
 // Vercel serverless function wrapper for Express app
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "../server/routes";
-import { log } from "../server/vite";
 import path from "path";
 import fs from "fs";
 
@@ -19,6 +17,17 @@ app.use(express.json({
   }
 }));
 app.use(express.urlencoded({ extended: false }));
+
+// Simple logging function
+function log(message: string) {
+  const formattedTime = new Date().toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+  console.log(`${formattedTime} [express] ${message}`);
+}
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -50,15 +59,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// Initialize routes
+// Initialize app
 let appInitialized = false;
 
 async function initializeApp() {
   if (appInitialized) return;
   
-  // Register routes (ignore the Server return value in serverless mode)
-  await registerRoutes(app);
-
+  // Error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
